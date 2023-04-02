@@ -1,0 +1,9 @@
+[submodule "themes/Massively"]
+	path = themes/Massively
+	url = https://git.covear.xyz/github.com/curtiscde/hugo-theme-massively
+[submodule "themes/HB"]
+	path = themes/HB
+	url = https://git.covear.xyz/https://github.com/hbstack/theme
+[submodule "themes/terminal"]
+	path = themes/terminal
+	url = https://git.covear.xyz/github.com/panr/hugo-theme-terminal.git
