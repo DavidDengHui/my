@@ -2,7 +2,7 @@
 title: Test02
 subtitle:
 date: 2023-05-06T16:08:49+08:00
-draft: true
+draft: false
 author:
   name:
   link:

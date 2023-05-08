@@ -2,6 +2,7 @@
 title: "友链"
 date: 2023-05-07T19:55:11+08:00
 draft: false
+comment: true
 ---
 
 | 序号 | 站点 | 链接 |
