@@ -539,7 +539,7 @@ theme = "FixIt"
       Mix = false
     # FixIt 0.2.15 | 更改 评论系统设置
     [params.page.comment]
-      enable = false
+      enable = true
       # FixIt 0.2.13 | 新增 Artalk 评论系统设置 (https://artalk.js.org/)
       [params.page.comment.artalk]
         enable = false
@@ -671,8 +671,8 @@ theme = "FixIt"
         reactionsEnabled = "1"
         emitMetadata = "0"
         inputPosition = "bottom" # ["top", "bottom"]
-        lightTheme = "light"
-        darkTheme = "dark"
+        lightTheme = "light_high_contrast" # light light_high_contrast light_protanopia light_tritanopia
+        darkTheme = "dark_dimmed" # dark dark_high_contrast dark_protanopia dark_tritanopia dark_dimmed
         lazyLoad = true
     # FixIt 0.2.7 | 新增 第三方库配置
     [params.page.library]
