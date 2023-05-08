@@ -782,7 +782,7 @@ theme = "FixIt"
     [params.cookieconsent.content]
       message = ""
       dismiss = ""
-      link = "/about"
+      link = ""
 
   # FixIt 0.2.7 | 更改 第三方库文件的 CDN 设置
   [params.cdn]
