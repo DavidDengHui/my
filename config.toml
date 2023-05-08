@@ -12,31 +12,79 @@ theme = "FixIt"
 
 [menu]
   [[menu.main]]
-    identifier = "posts"
-    name = "文章"
-    url = "/posts/"
+    identifier = "home"
+    name = "主页"
+    url = "/"
     weight = 1
+    [menu.main.params]
+      class = "text-center"
+      draft = false
+      icon = "fa-solid fa-home"
+      type = "" # mobile desktop
   [[menu.main]]
+    identifier = "posts"
+    name = "所有文章"
+    url = "/posts/"
+    weight = 2
+    [menu.main.params]
+      class = "text-center"
+      draft = false
+      icon = "fa-solid fa-archive"
+      type = "" # mobile desktop
+  [[menu.main]]
+    parent = "posts"
     identifier = "categories"
     name = "分类"
     url = "/categories/"
     title = ""
-    weight = 2
+    weight = 201
+    [menu.main.params]
+      class = "text-center"
+      draft = false
+      icon = "fa-solid fa-th"
+      type = "" # mobile desktop
   [[menu.main]]
+    parent = "posts"
     identifier = "tags"
     name = "标签"
     url = "/tags/"
-    weight = 3
+    weight = 202
+    [menu.main.params]
+      class = "text-center"
+      draft = false
+      icon = "fa-solid fa-tags"
+      type = "" # mobile desktop
   [[menu.main]]
-    identifier = "links"
+    identifier = "friends"
     name = "友链"
+    url = "/friends/"
+    weight = 3
+    [menu.main.params]
+      class = "text-center"
+      draft = false
+      icon = "fa-solid fa-users"
+      type = "" # mobile desktop
+  [[menu.main]]
+    parent = "friends"
+    identifier = "links"
+    name = "收藏"
     url = "/links/"
-    weight = 4
+    weight = 301
+    [menu.main.params]
+      class = "text-center"
+      draft = false
+      icon = "fa-solid fa-link"
+      type = "" # mobile desktop
   [[menu.main]]
     identifier = "about"
     name = "关于"
     url = "/about/"
-    weight = 5
+    weight = 4
+    [menu.main.params]
+      class = "text-center"
+      draft = false
+      icon = "fa-solid fa-info-circle"
+      type = "" # mobile desktop
 
 [params]
   # FixIt 0.2.15 | 更改 FixIt 主题版本
@@ -380,7 +428,7 @@ theme = "FixIt"
 
     # FixIt 0.2.15 | 新增 转载配置
     [params.page.repost]
-      enable = false
+      enable = true
       url = ""
     # FixIt 0.2.0 | 新增 目录配置
     [params.page.toc]
@@ -391,7 +439,7 @@ theme = "FixIt"
       # 是否使侧边目录自动折叠展开
       auto = true
       # FixIt 0.2.13 | 新增 目录位置 ["left", "right"]
-      position = "right"
+      position = "left"
     # FixIt 0.2.13 | 新增 在文章开头显示提示信息，提醒读者文章内容可能过时
     [params.page.expirationReminder]
       enable = false
@@ -411,11 +459,11 @@ theme = "FixIt"
       maxShownLines = 10
     # FixIt 0.2.14 | 新增 文章编辑
     [params.page.edit]
-      enable = false
+      enable = true
       # FixIt 0.2.15 | 更改 编辑的基础链接
       # url = "/edit/branch-name/subdirectory-name" # 相对于 `params.gitRepo`
       # url = "https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name" # 完整链接
-      url = ""
+      url = "https://github.com/DavidDengHui/my/edit/master/content"
     # FixIt 0.2.0 | 更改 KaTeX 数学公式 (https://katex.org)
     [params.page.math]
       enable = true
@@ -447,24 +495,24 @@ theme = "FixIt"
       fullscreen = true
     # FixIt 0.2.17 | 新增 赞赏设置
     [params.page.reward]
-      enable = false
-      animation = false
+      enable = true
+      animation = true
       # 相对于页脚的位置，可选值：["before", "after"]
       position = "after"
-      # comment = "Buy me a coffee"
+      comment = "Buy me a coffee"
       # FixIt 0.2.18 | 新增 二维码图片展示模式，可选值：["static", "fixed"]，默认：`static`
       mode = "static"
       [params.page.reward.ways]
-        # wechatpay = "/images/wechatpay.png"
-        # alipay = "/images/alipay.png"
-        # paypal = "/images/paypal.png"
+        wechatpay = "/images/wechatpay.jpg"
+        alipay = "/images/alipay.jpg"
+        paypal = "/images/paypel.png"
         # bitcoin = "/images/bitcoin.png"
     # FixIt 0.2.0 | 更改 文章页面的分享信息设置
     [params.page.share]
       enable = true
       Twitter = true
       Facebook = true
-      Linkedin = false
+      Linkedin = true
       Whatsapp = true
       Pinterest = false
       Tumblr = false
@@ -483,10 +531,10 @@ theme = "FixIt"
       Renren = false
       Myspace = true
       Blogger = true
-      Baidu = false
+      Baidu = true
       Odnoklassniki = false
       Evernote = true
-      Skype = false
+      Skype = true
       Trello = false
       Mix = false
     # FixIt 0.2.15 | 更改 评论系统设置
@@ -612,12 +660,12 @@ theme = "FixIt"
         katex = false
       # FixIt 0.2.14 | 新增 Giscus 评论系统设置
       [params.page.comment.giscus]
-        enable = false
-        repo = ""
-        repoId = ""
-        category = ""
-        categoryId = ""
-        mapping = ""
+        enable = true
+        repo = "DavidDengHui/my"
+        repoId = "R_kgDOJRm69A"
+        category = "General"
+        categoryId = "DIC_kwDOJRm69M4CWV4j"
+        mapping = "pathname"
         strict = "0" # FixIt 0.2.18 | 新增
         term = ""
         reactionsEnabled = "1"
@@ -668,7 +716,7 @@ theme = "FixIt"
   # FixIt 0.2.12 | 新增 盘古之白配置
   [params.pangu]
     # 适用于中文写作用户
-    enable = false
+    enable = true
     selector = "article" # FixIt 0.2.17 | 新增
 
   # FixIt 0.2.12 | 新增 水印配置
@@ -734,7 +782,7 @@ theme = "FixIt"
     [params.cookieconsent.content]
       message = ""
       dismiss = ""
-      link = ""
+      link = "/about"
 
   # FixIt 0.2.7 | 更改 第三方库文件的 CDN 设置
   [params.cdn]
@@ -762,18 +810,18 @@ theme = "FixIt"
     # FixIt 0.2.18 | 新增 取决于作者邮箱，作者邮箱未设置则使用本地头像
     enable = false
     # Gravatar 主机，默认：“www.gravatar.com”
-    host = "www.gravatar.com" # ["cn.gravatar.com", "gravatar.loli.net", ...]
-    style = "" # ["", "mp", "identicon", "monsterid", "wavatar", "retro", "blank", "robohash"]
+    host = "cravatar.cn" # ["cn.gravatar.com", "gravatar.loli.net", ...]
+    style = "monsterid" # ["", "mp", "identicon", "monsterid", "wavatar", "retro", "blank", "robohash"]
 
   # FixIt 0.2.16 | 新增 返回顶部
   [params.backToTop]
     enable = true
     # 在 b2t 按钮中显示滚动百分比
-    scrollpercent = false
+    scrollpercent = true
 
   # FixIt 0.2.16 | 新增 阅读进度条
   [params.readingProgress]
-    enable = false
+    enable = true
     # 可用值：["left", "right"]
     start = "left"
     # 可用值：["top", "bottom"]
@@ -786,10 +834,10 @@ theme = "FixIt"
   # FixIt 0.2.17 | 新增 页面加载期间顶部的进度条
   # 有关详细信息：https://github.com/CodeByZach/pace
   [params.pace]
-    enable = false
+    enable = true
     # 所有可用颜色：
     # ["black", "blue", "green", "orange", "pink", "purple", "red", "silver", "white", "yellow"]
-    color = "blue"
+    color = "green"
     # 所有可用主题：
     # ["barber-shop", "big-counter", "bounce", "center-atom", "center-circle", "center-radar", "center-simple",
     # "corner-indicator", "fill-left", "flash", "flat-top", "loading-bar", "mac-osx", "material", "minimal"]
