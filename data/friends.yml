@@ -1,4 +1,34 @@
+#- nickname: "David Deng"
+#  avatar: "/images/avatar.jpg"
+#  url: "https://covear.top/"
+#  description: "My own blog."
+
 - nickname: "David Deng"
   avatar: "/images/avatar.jpg"
   url: "https://covear.top/"
-  description: "David Deng 的个人博客"
+  description: "My own blog."
+
+- nickname: "Wayne"
+  avatar: "https://q1.qlogo.cn/g?b=qq&nk=1085165020&s=640"
+  url: "http://www.xwayne.com/"
+  description: "My schoolmate from high school, XiaRuihang."
+
+- nickname: "Bokjan"
+  avatar: "https://bokjan.com/usr/uploads/avatar_real.jpg"
+  url: "https://bokjan.com/"
+  description: "My schoolmate from high school, ChenBoyin."
+
+- nickname: "RHX1998"
+  avatar: "https://q1.qlogo.cn/g?b=qq&nk=875795029&s=640"
+  url: "https://www.rhx1998.win/"
+  description: "My schoolmate from high school, RenHongxiang."
+
+- nickname: "Tom Smith"
+  avatar: "https://avatars.githubusercontent.com/u/12679488"
+  url: "https://shuaitq.github.io/"
+  description: "My schoolmate from high school, ShauiTianqiang."
+
+- nickname: "SundayRX"
+  avatar: "https://avatars.githubusercontent.com/u/50036794"
+  url: "https://blog.csdn.net/qq_33212020"
+  description: "Microsoft 365 E5 Renew"
