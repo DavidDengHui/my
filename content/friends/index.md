@@ -5,7 +5,7 @@ type: friends
 date: 2023-05-08T20:30:34+08:00
 description: "David Deng's friends"
 keywords:
-  - 'friends template'
+  - 'friends'
   - 友情链接
 comment: true
 
@@ -14,13 +14,13 @@ comment: true
 ## 一起来扩列吧！
 
 {{< admonition tip "添加您的链接" >}}
-您可以通过 页面底部评论留言 或 [创建 PR :(fa-solid fa-code-branch fa-fw):](https://github.com/DavidDengHui/my/pulls) 或 [编辑页面数据（实时地） :(fa-regular fa-pen-to-square fa-fw):](https://github.com/DavidDengHui/my/edit/master/data/friends.yml)  按 **`nickname`** 以字典顺序将您的网站添加到此页面，格式如下：
+您可以通过 页面底部评论留言 或 [创建 PR :(fa-solid fa-code-branch fa-fw):](https://github.com/DavidDengHui/my/pulls) 或 [编辑友链数据（实时地） :(fa-regular fa-pen-to-square fa-fw):](https://github.com/DavidDengHui/my/edit/master/data/friends.yml)  按顺序将您的网站添加到清单末尾，格式如下：
 
 ```yml
-- nickname: <your nickname>
-  avatar: <your avatar>
-  url: <your site link>
-  description: <description of your site>
+- nickname: "<your nickname>"
+  avatar: "<your avatar>"
+  url: "<your site link>"
+  description: "<description of your site>"
 ```
 
 > :(fa-solid fa-exclamation-triangle): *不要恶意删改别人的成果哦！*
