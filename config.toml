@@ -23,7 +23,7 @@ theme = "FixIt"
       type = "" # mobile desktop
   [[menu.main]]
     identifier = "posts"
-    name = "所有文章"
+    name = "文章"
     url = "/posts/"
     weight = 2
     [menu.main.params]
