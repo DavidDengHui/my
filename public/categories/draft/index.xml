@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>draft - 分类 - 啊晖de老窝</title>
+    <link>https://daviddenghui.gitee.io/my/categories/draft/</link>
+    <description>draft - 分类 - 啊晖de老窝</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>david.no.1@msn.cn (David Deng)</managingEditor>
+      <webMaster>david.no.1@msn.cn (David Deng)</webMaster><lastBuildDate>Sat, 06 May 2023 16:08:49 &#43;0800</lastBuildDate><atom:link href="https://daviddenghui.gitee.io/my/categories/draft/" rel="self" type="application/rss+xml" /><item>
+  <title>Test02</title>
+  <link>https://daviddenghui.gitee.io/my/test02/</link>
+  <pubDate>Sat, 06 May 2023 16:08:49 &#43;0800</pubDate>
+  <author>David Deng</author>
+  <guid>https://daviddenghui.gitee.io/my/test02/</guid>
+  <description><![CDATA[<p>test2</p>]]></description>
+</item>
+<item>
+  <title>Test01</title>
+  <link>https://daviddenghui.gitee.io/my/test01/</link>
+  <pubDate>Sat, 06 May 2023 16:06:23 &#43;0800</pubDate>
+  <author>David Deng</author>
+  <guid>https://daviddenghui.gitee.io/my/test01/</guid>
+  <description><![CDATA[<p>test1</p>]]></description>
+</item>
+</channel>
+</rss>
