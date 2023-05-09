@@ -14,7 +14,7 @@ comment: true
 ## 一起来扩列吧！
 
 {{< admonition tip "添加您的链接" >}}
-您可以通过 页面底部评论留言 或 [创建 PR :(fa-solid fa-code-branch fa-fw):](https://github.com/DavidDengHui/my/pulls) 或 [编辑友链数据（实时地） :(fa-regular fa-pen-to-square fa-fw):](https://github.com/DavidDengHui/my/edit/master/data/friends.yml)  按顺序将您的网站添加到清单末尾，格式如下：
+您可以通过 页面底部评论留言 或 [创建 PR :(fa-solid fa-code-branch fa-fw):](https://github.com/DavidDengHui/my/pulls) 或 [编辑友链数据 :(fa-regular fa-pen-to-square fa-fw):](https://github.com/DavidDengHui/my/edit/master/data/friends.yml)  按顺序将您的网站添加到清单末尾，格式如下：
 
 ```yml
 - nickname: "<your nickname>"
