@@ -1,10 +1,10 @@
 #- nickname: "David Deng"
-#  avatar: "/images/avatar.jpg"
+#  avatar: "https://img.source.host.covear.top/avatar.jpg"
 #  url: "https://covear.top/"
 #  description: "My own blog."
 
 - nickname: "David Deng"
-  avatar: "/images/avatar.jpg"
+  avatar: "https://img.source.host.covear.top/avatar.jpg"
   url: "https://covear.top/"
   description: "My own blog."
 

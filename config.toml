@@ -279,7 +279,7 @@ theme = "FixIt"
       # Gravatar 邮箱，用于优先在主页显示的头像
       gravatarEmail = "david.no.1@msn.cn"
       # 主页显示头像的 URL
-      avatarURL = "/images/avatar.jpg"
+      avatarURL = "https://img.source.host.covear.top/avatar.jpg"
       # FixIt 0.2.17 | 新增 头像菜单链接的 identifier
       avatarMenu = "/posts"
       # FixIt 0.2.7 | 更改 主页显示的网站标题（支持 HTML 格式）
@@ -504,9 +504,9 @@ theme = "FixIt"
       # FixIt 0.2.18 | 新增 二维码图片展示模式，可选值：["static", "fixed"]，默认：`static`
       mode = "static"
       [params.page.reward.ways]
-        wechatpay = "/images/wechatpay.jpg"
-        alipay = "/images/alipay.jpg"
-        paypal = "/images/paypel.png"
+        wechatpay = "https://img.source.host.covear.top/wechatpay.jpg"
+        alipay = "https://img.source.host.covear.top/alipay.jpg"
+        paypal = "https://img.source.host.covear.top/paypel.png"
         # bitcoin = "/images/bitcoin.png"
     # FixIt 0.2.0 | 更改 文章页面的分享信息设置
     [params.page.share]
@@ -899,7 +899,7 @@ theme = "FixIt"
   name = "David Deng"
   email = "david.no.1@msn.cn"
   link = "https://covear.top/"
-  avatar = "/images/avatar.jpg"
+  avatar = "https://img.source.host.covear.top/avatar.jpg"
 
 
 # 网站地图配置
