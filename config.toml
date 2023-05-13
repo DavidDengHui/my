@@ -1,6 +1,7 @@
 title = "啊晖de老窝"
-# baseURL = "https://ahome.eu.org"
-# hugo --baseURL "https://daviddenghui.gitee.io/my"
+HUGO_VERSION = "v0.111.3"
+baseURL = "https://covear.gitee.io"
+# hugo --baseURL "https://covear.gitee.io"
 # 设置默认的语言 ["en", "zh-cn", "fr", "pl", ...]
 defaultContentLanguage = "zh-cn"
 # 网站语言, 仅在这里 CN 大写 ["en", "zh-CN", "fr", "pl", ...]
