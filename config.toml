@@ -168,7 +168,7 @@ theme = "FixIt"
     # FixIt 0.2.13 | 更改 桌面端导航栏模式 ["sticky", "normal", "auto"]
     desktopMode = "sticky"
     # FixIt 0.2.13 | 更改 移动端导航栏模式 ["sticky", "normal", "auto"]
-    mobileMode = "auto"
+    mobileMode = "sticky"
     # FixIt 0.2.0 | 新增 页面头部导航栏标题配置
     [params.header.title]
       # LOGO 的 URL
@@ -186,7 +186,7 @@ theme = "FixIt"
       # 副标题名称
       name = ""
       # 是否为副标题显示打字机动画
-      typeit = true
+      typeit = false
 
   # FixIt 0.2.18 | 新增 面包屑导航配置
   [params.breadcrumb]
@@ -233,9 +233,9 @@ theme = "FixIt"
 
   # FixIt 0.2.12 | 新增 不蒜子统计
   [params.ibruce]
-    enable = false
+    enable = true
     # 在文章中开启
-    enablePost = false
+    enablePost = true
 
   # FixIt 0.2.0 | 新增 Section（所有文章）页面配置
   [params.section]
@@ -368,7 +368,7 @@ theme = "FixIt"
     BuyMeaCoffee = ""
     Linktree = ""
     QQ = "1187523442"
-    QQGroup = "awbwdTtSQ_-H5QGzeJxdWgv6JMbNehNM" # https://qun.qq.com/join.html
+    QQGroup = "" # https://qun.qq.com/join.html
     Diaspora = ""
     CSDN = ""
     Discord = ""
@@ -395,10 +395,10 @@ theme = "FixIt"
     # FixIt 0.2.0 | 新增 是否在搜索结果中隐藏一篇文章
     hiddenFromSearch = false
     # FixIt 0.2.0 | 新增 是否使用 twemoji
-    twemoji = false
+    twemoji = true
     # 是否使用 lightgallery
     # FixIt 0.2.18 | 更改 如果设为 "force"，文章中的图片将强制按照画廊形式呈现
-    lightgallery = false
+    lightgallery = true
     # FixIt 0.2.0 | 新增 是否使用 ruby 扩展语法
     ruby = true
     # FixIt 0.2.0 | 新增 是否使用 fraction 扩展语法

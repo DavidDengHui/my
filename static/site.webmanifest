@@ -1,0 +1,8 @@
+{
+    "name": "啊晖de老窝",
+    "short_name": "AHome",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "这是 David Deng 的个人博客"
+}
