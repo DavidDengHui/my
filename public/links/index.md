@@ -9,5 +9,5 @@
 ---
 
 > 作者: [David Deng](https://covear.top/)  
-> URL: https://daviddenghui.gitee.io/my/links/  
+> URL: https://covear.gitee.io/links/  
 

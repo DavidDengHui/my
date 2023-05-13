@@ -76,5 +76,5 @@
 ---
 
 > 作者: [David Deng](https://covear.top/)  
-> URL: https://daviddenghui.gitee.io/my/about/  
+> URL: https://covear.gitee.io/about/  
 

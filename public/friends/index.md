@@ -30,5 +30,5 @@
 ---
 
 > 作者: [David Deng](https://covear.top/)  
-> URL: https://daviddenghui.gitee.io/my/friends/  
+> URL: https://covear.gitee.io/friends/  
 

@@ -7,5 +7,5 @@ test2
 ---
 
 > 作者: <no value>  
-> URL: https://daviddenghui.gitee.io/my/test02/  
+> URL: https://covear.gitee.io/test02/  
 

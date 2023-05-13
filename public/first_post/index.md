@@ -85,5 +85,5 @@ int main () {
 ---
 
 > 作者: [David Deng](https://covear.top/)  
-> URL: https://daviddenghui.gitee.io/my/first_post/  
+> URL: https://covear.gitee.io/first_post/  
 
