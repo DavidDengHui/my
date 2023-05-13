@@ -1,5 +1,5 @@
 title = "啊晖de老窝"
-# baseURL = "https://daviddenghui.gitee.io/my"
+# baseURL = "https://ahome.eu.org"
 # hugo --baseURL "https://daviddenghui.gitee.io/my"
 # 设置默认的语言 ["en", "zh-cn", "fr", "pl", ...]
 defaultContentLanguage = "zh-cn"
