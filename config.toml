@@ -190,7 +190,7 @@ theme = "FixIt"
 
   # FixIt 0.2.18 | 新增 面包屑导航配置
   [params.breadcrumb]
-    enable = true
+    enable = false
     sticky = true
     showHome = true
 
@@ -233,9 +233,9 @@ theme = "FixIt"
 
   # FixIt 0.2.12 | 新增 不蒜子统计
   [params.ibruce]
-    enable = true
+    enable = false
     # 在文章中开启
-    enablePost = true
+    enablePost = false
 
   # FixIt 0.2.0 | 新增 Section（所有文章）页面配置
   [params.section]
@@ -244,7 +244,7 @@ theme = "FixIt"
     # 日期格式（月和日）
     dateFormat = "01-02"
     # RSS 文章数目
-    rss = 10
+    rss = 100
     # FixIt 0.2.13 | 新增 最近更新文章设置
     [params.section.recentlyUpdated]
       enable = false
@@ -263,16 +263,16 @@ theme = "FixIt"
 
   # FixIt 0.2.17 | 新增 标签云配置
   [params.tagcloud]
-    enable = false
+    enable = true
     min = 14 # 最小字体大小，单位：px
     max = 32 # 最大字体大小，单位：px
     peakCount = 10 # 每个标签的最大文章数
-    orderby = "name" # 标签排序方式，可选值：["name", "count"]
+    orderby = "count" # 标签排序方式，可选值：["name", "count"]
 
   # 主页配置
   [params.home]
     # FixIt 0.2.0 | 新增 RSS 文章数目
-    rss = 10
+    rss = 100
     # 主页个人信息
     [params.home.profile]
       enable = true
@@ -891,7 +891,7 @@ theme = "FixIt"
       unsafe = true
   # 目录设置
   [markup.tableOfContents]
-    startLevel = 2
+    startLevel = 1
     endLevel = 6
 
 # 作者配置
