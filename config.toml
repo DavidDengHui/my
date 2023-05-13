@@ -186,11 +186,11 @@ theme = "FixIt"
       # 副标题名称
       name = ""
       # 是否为副标题显示打字机动画
-      typeit = false
+      typeit = true
 
   # FixIt 0.2.18 | 新增 面包屑导航配置
   [params.breadcrumb]
-    enable = false
+    enable = true
     sticky = true
     showHome = true
 
@@ -705,7 +705,7 @@ theme = "FixIt"
     # 光标的字符（支持 HTML 格式）
     cursorChar = "|"
     # 打字结束之后光标的持续时间（单位是毫秒，"-1" 代表无限大）
-    duration = -1
+    duration = 10000
     # FixIt 0.2.18 | 新增 打字完成后是否会连续循环
     loop = false
 
