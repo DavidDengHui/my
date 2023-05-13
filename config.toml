@@ -891,7 +891,7 @@ theme = "FixIt"
       unsafe = true
   # 目录设置
   [markup.tableOfContents]
-    startLevel = 2
+    startLevel = 1
     endLevel = 6
 
 # 作者配置

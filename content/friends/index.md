@@ -8,6 +8,7 @@ keywords:
   - 'friends'
   - 友情链接
 comment: true
+toc: true
 
 ---
 
