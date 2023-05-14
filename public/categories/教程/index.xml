@@ -1,10 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>所有文章 - 啊晖de老窝</title>
-    <link>https://covear.gitee.io/posts/</link>
-    <description>所有文章 | 啊晖de老窝</description>
+    <title>教程 - 分类 - 啊晖de老窝</title>
+    <link>https://covear.gitee.io/categories/%E6%95%99%E7%A8%8B/</link>
+    <description>教程 - 分类 - 啊晖de老窝</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>david.no.1@msn.cn (David Deng)</managingEditor>
-      <webMaster>david.no.1@msn.cn (David Deng)</webMaster><lastBuildDate>Mon, 15 May 2023 00:22:28 &#43;0800</lastBuildDate><atom:link href="https://covear.gitee.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>david.no.1@msn.cn (David Deng)</webMaster><lastBuildDate>Mon, 15 May 2023 00:22:28 &#43;0800</lastBuildDate><atom:link href="https://covear.gitee.io/categories/%E6%95%99%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
   <title>零成本搭建自己的网站</title>
   <link>https://covear.gitee.io/free_website/</link>
   <pubDate>Mon, 15 May 2023 00:22:28 &#43;0800</pubDate>
@@ -374,145 +374,6 @@
 <ul>
 <li></li>
 </ul>]]></description>
-</item>
-<item>
-  <title>Test02</title>
-  <link>https://covear.gitee.io/test02/</link>
-  <pubDate>Sat, 06 May 2023 16:08:49 &#43;0800</pubDate>
-  <author>David Deng</author>
-  <guid>https://covear.gitee.io/test02/</guid>
-  <description><![CDATA[<p>test2</p>]]></description>
-</item>
-<item>
-  <title>Test01</title>
-  <link>https://covear.gitee.io/test01/</link>
-  <pubDate>Sat, 06 May 2023 16:06:23 &#43;0800</pubDate>
-  <author>David Deng</author>
-  <guid>https://covear.gitee.io/test01/</guid>
-  <description><![CDATA[<p>test1</p>]]></description>
-</item>
-<item>
-  <title>开始白嫖之旅！</title>
-  <link>https://covear.gitee.io/first_post/</link>
-  <pubDate>Sat, 06 May 2023 15:44:57 &#43;0800</pubDate>
-  <author>David Deng</author>
-  <guid>https://covear.gitee.io/first_post/</guid>
-  <description><![CDATA[<h2 id="引言">引言</h2>
-<blockquote>
-<p>生存还是毁灭，这是一个值得考虑的问题；默然忍受命运暴虐的毒箭，或是挺身反抗人世无涯的苦难,通过斗争把它们扫个干净，这两种行为，哪一种更加高尚？死了；睡着了；什么都完了；要是在这一种睡眠之中，我们心头的创痛，以及其他无数血肉之躯所不能避免的打击，都可以从此消失，那正是我们求之不得的结局。死了；睡着了；睡着了也许还会做梦；嗯，阻碍就在这儿：因为当我们摆脱了这一具朽腐的皮囊以后，在那死亡的睡眠里，究竟将要做些什么梦，那不能不使我们踌躇顾虑。人们甘心久困于患难之中，也就是为了这个缘故；谁愿意忍受人世的鞭挞和讥嘲、压迫者的凌辱、傲慢者的冷眼、被轻蔑的爱情的惨痛、法律的迁延、官吏的横暴和费尽辛勤所换来的小人的鄙视，要是他只要用一柄小小的刀子，就可以清算他自己的一生？谁愿意负着这样的重担，在烦劳的生命的压迫下呻吟流汗，倘不是因为惧怕不可知的死后，惧怕那从来不曾有一个旅人回来过的神秘之国，是它迷惑了我们的意志，使我们宁愿忍受的折磨，不敢向我们所不知道的痛苦飞去？这样，重重的顾虑使我们全变成了懦夫，决心的赤热的光彩，被审慎的思维盖上了一层灰色，伟大的事业在这一种考虑之下，也会逆流而退，失去了行动的意义。</p>
-</blockquote>
-<h2 id="代码示范">代码示范</h2>
-<h3 id="c语言">C语言</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Hello, World!&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="备份我的c模板">备份我的C++模板</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cctype&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;list&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stack&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">//    freopen(&#34;.in&#34;, &#34;r&#34;, stdin);
-</span></span></span><span class="line"><span class="cl"><span class="c1">//    freopen(&#34;.out&#34;, &#34;w&#34;, stdout);
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Hello, World!&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">//    fclose(stdin);
-</span></span></span><span class="line"><span class="cl"><span class="c1">//    fclose(stdout);
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><hr>
-<h2 id="其它">其它</h2>
-<h3 id="euorg-免费域名"><code>EU.org</code> 免费域名</h3>
-<ul>
-<li>
-<p>后台管理地址：<a href="https://nic.eu.org/"target="_blank" rel="external nofollow noopener noreferrer">https://nic.eu.org/</a></p>
-</li>
-<li>
-<p>创建域名订单</p>
-</li>
-</ul>
-<p><figure><a class="lightgallery" href="https://img.source.host.covear.top/2023-05-09-20230508184455.png" data-thumbnail="https://img.source.host.covear.top/2023-05-09-20230508184455.png" data-sub-html="<h2>2023-05-09-20230508184455</h2><p>订单创建成功</p>"></a><figcaption class="image-caption">2023-05-09-20230508184455</figcaption>
-  </figure></p>
-<div class="details admonition info open">
-    <div class="details-summary admonition-title">
-      <i class="icon fa-solid fa-info-circle fa-fw" aria-hidden="true"></i>订单创建成功的提示<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i>
-    </div>
-    <div class="details-content">
-      <div class="admonition-content"><blockquote>
-<p>---- Servers and domain names check</p>
-<p>Getting IP for JOHN.NS.CLOUDFLARE.COM: 173.245.59.185 172.64.33.185 108.162.193.185<br>
-Getting IP for JOHN.NS.CLOUDFLARE.COM: 2606:4700:58::adf5:3bb9 2a06:98c1:50::ac40:21b9 2803:f800:50::6ca2:c1b9<br>
-Getting IP for NAYA.NS.CLOUDFLARE.COM: 108.162.194.242 172.64.34.242 162.159.38.242<br>
-Getting IP for NAYA.NS.CLOUDFLARE.COM: 2606:4700:50::a29f:26f2 2a06:98c1:50::ac40:22f2 2803:f800:50::6ca2:c2f2</p>
-<p>No error, storing for validation&hellip;<br>
-Saved as request 20230508123527-arf-30261</p>
-<p>Done</p>
-</blockquote>
-</div>
-    </div>
-  </div>]]></description>
 </item>
 </channel>
 </rss>

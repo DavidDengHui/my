@@ -2,16 +2,22 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><url>
+      <loc>https://covear.gitee.io/categories/</loc><lastmod>2023-05-15T00:22:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://covear.gitee.io/tags/cdn/</loc><lastmod>2023-05-15T00:22:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://covear.gitee.io/posts/</loc><lastmod>2023-05-15T00:22:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://covear.gitee.io/tags/</loc><lastmod>2023-05-15T00:22:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://covear.gitee.io/</loc><lastmod>2023-05-15T00:22:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://covear.gitee.io/categories/%E6%95%99%E7%A8%8B/</loc><lastmod>2023-05-15T00:22:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://covear.gitee.io/free_website/</loc><lastmod>2023-05-15T00:22:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://covear.gitee.io/tags/%E5%85%8D%E8%B4%B9/</loc><lastmod>2023-05-15T00:22:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://covear.gitee.io/tags/%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE/</loc><lastmod>2023-05-15T00:22:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://covear.gitee.io/tags/%E5%9F%9F%E5%90%8D/</loc><lastmod>2023-05-15T00:22:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>https://covear.gitee.io/friends/</loc><lastmod>2023-05-08T20:30:34&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://covear.gitee.io/links/</loc><lastmod>2023-05-07T19:55:11&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://covear.gitee.io/about/</loc><lastmod>2023-05-07T19:55:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://covear.gitee.io/categories/</loc><lastmod>2023-05-06T16:08:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+      <loc>https://covear.gitee.io/links/</loc><lastmod>2023-05-07T19:55:11&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+      <loc>https://covear.gitee.io/about/</loc><lastmod>2023-05-07T19:55:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
       <loc>https://covear.gitee.io/tags/draft/</loc><lastmod>2023-05-06T16:08:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
       <loc>https://covear.gitee.io/categories/draft/</loc><lastmod>2023-05-06T16:08:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-      <loc>https://covear.gitee.io/posts/</loc><lastmod>2023-05-06T16:08:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-      <loc>https://covear.gitee.io/tags/</loc><lastmod>2023-05-06T16:08:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
       <loc>https://covear.gitee.io/test02/</loc><lastmod>2023-05-06T16:08:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-      <loc>https://covear.gitee.io/</loc><lastmod>2023-05-06T16:08:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
       <loc>https://covear.gitee.io/test01/</loc><lastmod>2023-05-06T16:06:23&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
       <loc>https://covear.gitee.io/first_post/</loc><lastmod>2023-05-06T15:44:57&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
       <loc>https://covear.gitee.io/tags/%E6%97%A5%E5%B8%B8/</loc><lastmod>2023-05-06T15:44:57&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>

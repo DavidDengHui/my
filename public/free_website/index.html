@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>零成本搭建自己的网站 - 啊晖de老窝</title><meta name="author" content="David Deng">
+<meta name="author-link" content="https://covear.top/">
+<meta name="description" content="
+想要一个在网络上不受限发表观点的空间？坚决不做氪金玩家？方便的低门槛操作？可能一些90后听说过PHP分销免费空间，都是过去式了！更好的解决方案在这里——EU.org &#43; CloudFlare/DNSPod &#43; GitHub/Gitee
+" /><meta name="keywords" content='免费, 域名, CDN, 网站建设' /><meta itemprop="name" content="零成本搭建自己的网站">
+<meta itemprop="description" content="
+想要一个在网络上不受限发表观点的空间？坚决不做氪金玩家？方便的低门槛操作？可能一些90后听说过PHP分销免费空间，都是过去式了！更好的解决方案在这里——EU.org &#43; CloudFlare/DNSPod &#43; GitHub/Gitee
+"><meta itemprop="datePublished" content="2023-05-15T00:22:28+08:00" />
+<meta itemprop="dateModified" content="2023-05-15T00:22:28+08:00" />
+<meta itemprop="wordCount" content="836"><meta itemprop="image" content="https://covear.gitee.io/logo.png"/>
+<meta itemprop="keywords" content="免费,域名,CDN,网站建设," /><meta property="og:title" content="零成本搭建自己的网站" />
+<meta property="og:description" content="
+想要一个在网络上不受限发表观点的空间？坚决不做氪金玩家？方便的低门槛操作？可能一些90后听说过PHP分销免费空间，都是过去式了！更好的解决方案在这里——EU.org &#43; CloudFlare/DNSPod &#43; GitHub/Gitee
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://covear.gitee.io/free_website/" /><meta property="og:image" content="https://covear.gitee.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-15T00:22:28+08:00" />
+<meta property="article:modified_time" content="2023-05-15T00:22:28+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://covear.gitee.io/logo.png"/>
+
+<meta name="twitter:title" content="零成本搭建自己的网站"/>
+<meta name="twitter:description" content="
+想要一个在网络上不受限发表观点的空间？坚决不做氪金玩家？方便的低门槛操作？可能一些90后听说过PHP分销免费空间，都是过去式了！更好的解决方案在这里——EU.org &#43; CloudFlare/DNSPod &#43; GitHub/Gitee
+"/>
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://covear.gitee.io/free_website/" /><link rel="prev" href="https://covear.gitee.io/test02/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "零成本搭建自己的网站",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/covear.gitee.io\/free_website\/"
+    },"genre": "posts","keywords": "免费, 域名, CDN, 网站建设","wordcount":  836 ,
+    "url": "https:\/\/covear.gitee.io\/free_website\/","datePublished": "2023-05-15T00:22:28+08:00","dateModified": "2023-05-15T00:22:28+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "David Deng"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="sticky"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="啊晖de老窝"><img loading="lazy" src="/logo.png" srcset="/logo.png, /logo.png 1.5x, /logo.png 2x" sizes="auto" data-title="啊晖de老窝" data-alt="啊晖de老窝" class="logo" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/><span class="header-title-text">啊晖de老窝</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item text-center">
+              <a
+                class="menu-link"
+                href="/"
+                
+                
+              ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li class="menu-item text-center has-children">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 文章</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item text-center"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/"
+                          
+                          
+                        ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li
+                        class="menu-item text-center"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/tags/"
+                          
+                          
+                        ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item text-center has-children">
+              <a
+                class="menu-link"
+                href="/friends/"
+                
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item text-center"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/links/"
+                          
+                          
+                        ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 收藏</a>
+                      </li></ul></li><li class="menu-item text-center">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="啊晖de老窝"><img loading="lazy" src="/logo.png" srcset="/logo.png, /logo.png 1.5x, /logo.png 2x" sizes="auto" data-title="/logo.png" data-alt="/logo.png" class="logo" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/><span class="header-title-text">啊晖de老窝</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="/"
+                  
+                  
+                ><i class="fa-solid fa-home fa-fw fa-sm" aria-hidden="true"></i> 主页</a></li><li
+              class="menu-item text-center"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/posts/"
+                    
+                    
+                  ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 文章</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item text-center"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/"
+                          
+                          
+                        ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li
+                        class="menu-item text-center"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/tags/"
+                          
+                          
+                        ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li
+              class="menu-item text-center"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/friends/"
+                    
+                    
+                  ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item text-center"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/links/"
+                          
+                          
+                        ><i class="fa-solid fa-link fa-fw fa-sm" aria-hidden="true"></i> 收藏</a>
+                      </li></ul></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container container-reverse"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>零成本搭建自己的网站</span>
+      </h1><p class="single-subtitle animate__animated animate__fadeIn">免费域名&#43;免费空间&#43;免费CDN&#43;免费图床</p></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://covear.top" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://img.source.host.covear.top/avatar.jpg" srcset="https://img.source.host.covear.top/avatar.jpg, https://img.source.host.covear.top/avatar.jpg 1.5x, https://img.source.host.covear.top/avatar.jpg 2x" sizes="auto" data-title="David Deng" data-alt="David Deng" class="avatar" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/>&nbsp;David Deng</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%95%99%E7%A8%8B/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 教程</a></span></div>
+      <div class="post-meta-line"><span title="发布于 2023-05-15 00:22:28"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2023-05-15">2023-05-15</time></span>&nbsp;<span title="更新于 2023-05-15 00:22:28"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2023-05-15">2023-05-15</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 836 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="零成本搭建自己的网站">
+              <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#注册域名">注册域名</a>
+          <ul>
+            <li><a href="#支持的域名后缀列表">支持的域名后缀列表</a></li>
+            <li><a href="#关于子域名的说明">关于子域名的说明</a></li>
+          </ul>
+        </li>
+        <li><a href="#域名接入cdn">域名接入CDN</a></li>
+        <li><a href="#静态网站托管">静态网站托管</a></li>
+        <li><a href="#接入自定义域名">接入自定义域名</a></li>
+        <li><a href="#创建图床">创建图床</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><blockquote>
+<p>想要一个在网络上不受限发表观点的空间？坚决不做氪金玩家？方便的低门槛操作？可能一些90后听说过PHP分销免费空间，都是过去式了！更好的解决方案在这里——<code>EU.org</code> + <code>CloudFlare</code>/<code>DNSPod</code> + <code>GitHub</code>/<code>Gitee</code></p>
+</blockquote>
+<h2 id="注册域名">注册域名</h2>
+<ul>
+<li>注册并登录上古网站<code>EU.org</code> <a href="https://nic.eu.org/arf/"target="_blank" rel="external nofollow noopener noreferrer">https://nic.eu.org/arf/</a></li>
+<li>建立新的<code>*.eu.org</code>域名 <a href="https://nic.eu.org/arf/en/domain/new/"target="_blank" rel="external nofollow noopener noreferrer">https://nic.eu.org/arf/en/domain/new/</a>
+<figure><a class="lightgallery" href="https://img.source.host.covear.top/2023-05-15-20230515002912.png" data-thumbnail="https://img.source.host.covear.top/2023-05-15-20230515002912.png" data-sub-html="<h2>2023-05-15-20230515002912</h2><p>2023-05-15-20230515002912</p>"><img loading="lazy" src="https://img.source.host.covear.top/2023-05-15-20230515002912.png" srcset="https://img.source.host.covear.top/2023-05-15-20230515002912.png, https://img.source.host.covear.top/2023-05-15-20230515002912.png 1.5x, https://img.source.host.covear.top/2023-05-15-20230515002912.png 2x" sizes="auto" data-title="2023-05-15-20230515002912" data-alt="2023-05-15-20230515002912" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></a><figcaption class="image-caption">2023-05-15-20230515002912</figcaption>
+  </figure></li>
+</ul>
+<h3 id="支持的域名后缀列表">支持的域名后缀列表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"><strong>序号</strong></th>
+<th style="text-align:right"><strong>后缀</strong></th>
+<th><strong>适用范围</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><strong>5</strong></td>
+<td style="text-align:right">eu.org</td>
+<td>组织</td>
+<td>国际域名</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>1</strong></td>
+<td style="text-align:right">ASSO.eu.org</td>
+<td>协会</td>
+<td>国际域名</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>2</strong></td>
+<td style="text-align:right">EDU.eu.org</td>
+<td>教育网站</td>
+<td>国际域名</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>3</strong></td>
+<td style="text-align:right">INT.eu.org</td>
+<td>国际域名</td>
+<td>国际域名</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>4</strong></td>
+<td style="text-align:right">NET.eu.org</td>
+<td>网络相关</td>
+<td>国际域名</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>6</strong></td>
+<td style="text-align:right">AT.eu.org</td>
+<td>奥地利</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>7</strong></td>
+<td style="text-align:right">BE.eu.org</td>
+<td>比利时</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>8</strong></td>
+<td style="text-align:right">BG.eu.org</td>
+<td>保加利亚</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>9</strong></td>
+<td style="text-align:right">CY.eu.org</td>
+<td>塞浦路斯</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>10</strong></td>
+<td style="text-align:right">CZ.eu.org</td>
+<td>捷克共和国</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>11</strong></td>
+<td style="text-align:right">DE.eu.org</td>
+<td>德国</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>12</strong></td>
+<td style="text-align:right">DK.eu.org</td>
+<td>丹麦</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>13</strong></td>
+<td style="text-align:right">EE.eu.org</td>
+<td>爱沙尼亚</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>14</strong></td>
+<td style="text-align:right">ES.eu.org</td>
+<td>西班牙</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>15</strong></td>
+<td style="text-align:right">FI.eu.org</td>
+<td>芬兰</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>16</strong></td>
+<td style="text-align:right">FR.eu.org</td>
+<td>法国</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>17</strong></td>
+<td style="text-align:right">GR.eu.org</td>
+<td>希腊</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>18</strong></td>
+<td style="text-align:right">HR.eu.org</td>
+<td>克罗地亚</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>19</strong></td>
+<td style="text-align:right">HU.eu.org</td>
+<td>匈牙利</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>20</strong></td>
+<td style="text-align:right">IE.eu.org</td>
+<td>爱尔兰</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>21</strong></td>
+<td style="text-align:right">IN.eu.org</td>
+<td>印度</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>22</strong></td>
+<td style="text-align:right">IT.eu.org</td>
+<td>意大利</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>23</strong></td>
+<td style="text-align:right">LT.eu.org</td>
+<td>立陶宛</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>24</strong></td>
+<td style="text-align:right">LU.eu.org</td>
+<td>卢森堡</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>25</strong></td>
+<td style="text-align:right">LV.eu.org</td>
+<td>拉脱维亚</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>26</strong></td>
+<td style="text-align:right">MT.eu.org</td>
+<td>马耳他</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>27</strong></td>
+<td style="text-align:right">NL.eu.org</td>
+<td>荷兰</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>28</strong></td>
+<td style="text-align:right">PL.eu.org</td>
+<td>波兰</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>29</strong></td>
+<td style="text-align:right">PT.eu.org</td>
+<td>葡萄牙</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>30</strong></td>
+<td style="text-align:right">RO.eu.org</td>
+<td>罗马尼亚</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>31</strong></td>
+<td style="text-align:right">SE.eu.org</td>
+<td>瑞典</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>32</strong></td>
+<td style="text-align:right">SI.eu.org</td>
+<td>斯洛文尼亚</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>33</strong></td>
+<td style="text-align:right">SK.eu.org</td>
+<td>斯洛伐克</td>
+<td>欧盟国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>34</strong></td>
+<td style="text-align:right">AL.eu.org</td>
+<td>阿尔巴尼亚</td>
+<td>其他欧洲国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>35</strong></td>
+<td style="text-align:right">CH.eu.org</td>
+<td>瑞士</td>
+<td>其他欧洲国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>36</strong></td>
+<td style="text-align:right">IS.eu.org</td>
+<td>冰岛</td>
+<td>其他欧洲国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>37</strong></td>
+<td style="text-align:right">ME.eu.org</td>
+<td>黑山共和国</td>
+<td>其他欧洲国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>38</strong></td>
+<td style="text-align:right">MK.eu.org</td>
+<td>北马其顿共和国</td>
+<td>其他欧洲国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>39</strong></td>
+<td style="text-align:right">NO.eu.org</td>
+<td>挪威</td>
+<td>其他欧洲国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>40</strong></td>
+<td style="text-align:right">RU.eu.org</td>
+<td>俄罗斯联邦</td>
+<td>其他欧洲国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>41</strong></td>
+<td style="text-align:right">TR.eu.org</td>
+<td>土耳其</td>
+<td>其他欧洲国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>42</strong></td>
+<td style="text-align:right">AU.eu.org</td>
+<td>澳大利亚</td>
+<td>其他国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>43</strong></td>
+<td style="text-align:right">CA.eu.org</td>
+<td>加拿大</td>
+<td>其他国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>44</strong></td>
+<td style="text-align:right">CD.eu.org</td>
+<td>刚果民主共和国</td>
+<td>其他国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>45</strong></td>
+<td style="text-align:right">CN.eu.org</td>
+<td>中国</td>
+<td>其他国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>46</strong></td>
+<td style="text-align:right">IL.eu.org</td>
+<td>以色列</td>
+<td>其他国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>47</strong></td>
+<td style="text-align:right">JP.eu.org</td>
+<td>日本</td>
+<td>其他国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>48</strong></td>
+<td style="text-align:right">KR.eu.org</td>
+<td>韩国</td>
+<td>其他国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>49</strong></td>
+<td style="text-align:right">MY.eu.org</td>
+<td>马来西亚</td>
+<td>其他国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>50</strong></td>
+<td style="text-align:right">NG.eu.org</td>
+<td>尼日利亚</td>
+<td>其他国家</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>51</strong></td>
+<td style="text-align:right">NZ.eurorg</td>
+<td>新西兰</td>
+<td>其他国家</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关于子域名的说明">关于子域名的说明</h3>
+<blockquote>
+<ul>
+<li>请注意“组织”类型没有委托<code>ORG.eu.org</code>子域名后缀，请使用使用<code>ASSO.eu.org</code>或<code>EU.org</code>后缀。</li>
+<li>由于欧洲不是唯一存在国家 NIC 策略问题的地方，因此欢迎非欧洲站点。</li>
+<li>其他国家将根据要求开放</li>
+</ul>
+</blockquote>
+<ul>
+<li>接入<code>DNSPod</code>域名解析 <a href="https://dnspod.cn"target="_blank" rel="external nofollow noopener noreferrer">https://dnspod.cn</a>
+<figure><a class="lightgallery" href="https://img.source.host.covear.top/2023-05-15-20230515003154.png" data-thumbnail="https://img.source.host.covear.top/2023-05-15-20230515003154.png" data-sub-html="<h2>2023-05-15-20230515003154</h2><p>2023-05-15-20230515003154</p>"><img loading="lazy" src="https://img.source.host.covear.top/2023-05-15-20230515003154.png" srcset="https://img.source.host.covear.top/2023-05-15-20230515003154.png, https://img.source.host.covear.top/2023-05-15-20230515003154.png 1.5x, https://img.source.host.covear.top/2023-05-15-20230515003154.png 2x" sizes="auto" data-title="2023-05-15-20230515003154" data-alt="2023-05-15-20230515003154" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></a><figcaption class="image-caption">2023-05-15-20230515003154</figcaption>
+  </figure></li>
+<li>将<code>DNSPod</code>反馈的服务器地址复制到<code>EU.org</code>后台，类型选择<code>server names</code>
+<figure><a class="lightgallery" href="https://img.source.host.covear.top/2023-05-15-20230515003329.png" data-thumbnail="https://img.source.host.covear.top/2023-05-15-20230515003329.png" data-sub-html="<h2>2023-05-15-20230515003329</h2><p>2023-05-15-20230515003329</p>"><img loading="lazy" src="https://img.source.host.covear.top/2023-05-15-20230515003329.png" srcset="https://img.source.host.covear.top/2023-05-15-20230515003329.png, https://img.source.host.covear.top/2023-05-15-20230515003329.png 1.5x, https://img.source.host.covear.top/2023-05-15-20230515003329.png 2x" sizes="auto" data-title="2023-05-15-20230515003329" data-alt="2023-05-15-20230515003329" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></a><figcaption class="image-caption">2023-05-15-20230515003329</figcaption>
+  </figure></li>
+<li>反馈<code>No error</code>申请完成，等待几小时即可使用
+<figure><a class="lightgallery" href="https://img.source.host.covear.top/2023-05-15-20230515003449.png" data-thumbnail="https://img.source.host.covear.top/2023-05-15-20230515003449.png" data-sub-html="<h2>2023-05-15-20230515003449</h2><p>2023-05-15-20230515003449</p>"><img loading="lazy" src="https://img.source.host.covear.top/2023-05-15-20230515003449.png" srcset="https://img.source.host.covear.top/2023-05-15-20230515003449.png, https://img.source.host.covear.top/2023-05-15-20230515003449.png 1.5x, https://img.source.host.covear.top/2023-05-15-20230515003449.png 2x" sizes="auto" data-title="2023-05-15-20230515003449" data-alt="2023-05-15-20230515003449" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></a><figcaption class="image-caption">2023-05-15-20230515003449</figcaption>
+  </figure></li>
+</ul>
+<h2 id="域名接入cdn">域名接入CDN</h2>
+<ul>
+<li></li>
+</ul>
+<h2 id="静态网站托管">静态网站托管</h2>
+<ul>
+<li></li>
+</ul>
+<h2 id="接入自定义域名">接入自定义域名</h2>
+<ul>
+<li></li>
+</ul>
+<h2 id="创建图床">创建图床</h2>
+<ul>
+<li></li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2023-05-15 00:22:28">更新于 2023-05-15&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/free_website/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/DavidDengHui/my/edit/master/content/posts%5cfree_website.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://covear.gitee.io/free_website/" data-title="零成本搭建自己的网站" data-via="DavidDengHui" data-hashtags="免费,域名,CDN,网站建设"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://covear.gitee.io/free_website/" data-hashtag="免费"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Linkedin" data-sharer="linkedin" data-url="https://covear.gitee.io/free_website/"><i class="fa-brands fa-linkedin fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://covear.gitee.io/free_website/" data-title="零成本搭建自己的网站" data-web><i class="fa-brands fa-whatsapp fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://covear.gitee.io/free_website/" data-title="零成本搭建自己的网站"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://covear.gitee.io/free_website/" data-title="零成本搭建自己的网站" data-ralateuid="DavidDengHui"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://covear.gitee.io/free_website/" data-title="零成本搭建自己的网站" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://covear.gitee.io/free_website/" data-title="零成本搭建自己的网站" data-description=""><i class="fa-brands fa-blogger fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://covear.gitee.io/free_website/" data-title="零成本搭建自己的网站"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://covear.gitee.io/free_website/" data-title="零成本搭建自己的网站"><i class="fa-brands fa-evernote fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Skype" data-sharer="skype" data-url="https://covear.gitee.io/free_website/" data-title="零成本搭建自己的网站"><i class="fa-brands fa-skype fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%85%8D%E8%B4%B9/' class="post-tag">免费</a><a href='/tags/%E5%9F%9F%E5%90%8D/' class="post-tag">域名</a><a href='/tags/cdn/' class="post-tag">CDN</a><a href='/tags/%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE/' class="post-tag">网站建设</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/test02/" class="post-nav-item" rel="prev" title="Test02"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Test02</a></div>
+</div>
+<div class="post-reward">
+    <div class="comment">Buy me a coffee</div>
+    <input type="checkbox" class="reward-input" name="reward" id="fi-reward" hidden />
+    <label class="reward-button" for="fi-reward">赞赏</label>
+    <div class="reward-ways" data-mode="static"><div><img loading="lazy" src="https://img.source.host.covear.top/alipay.jpg" srcset="https://img.source.host.covear.top/alipay.jpg, https://img.source.host.covear.top/alipay.jpg 1.5x, https://img.source.host.covear.top/alipay.jpg 2x" sizes="auto" data-title="David Deng 支付宝" data-alt="David Deng 支付宝" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/><span data-animation>支付宝</span>
+          </div><div><img loading="lazy" src="https://img.source.host.covear.top/paypel.png" srcset="https://img.source.host.covear.top/paypel.png, https://img.source.host.covear.top/paypel.png 1.5x, https://img.source.host.covear.top/paypel.png 2x" sizes="auto" data-title="David Deng 贝宝" data-alt="David Deng 贝宝" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/><span data-animation>贝宝</span>
+          </div><div><img loading="lazy" src="https://img.source.host.covear.top/wechatpay.jpg" srcset="https://img.source.host.covear.top/wechatpay.jpg, https://img.source.host.covear.top/wechatpay.jpg 1.5x, https://img.source.host.covear.top/wechatpay.jpg 2x" sizes="auto" data-title="David Deng 微信" data-alt="David Deng 微信" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/><span data-animation>微信</span>
+          </div></div>
+  </div><div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="DavidDengHui/my"
+            data-repo-id="R_kgDOJRm69A"
+            data-category="General"
+            data-category-id="DIC_kwDOJRm69M4CWV4j"
+            data-mapping="pathname"
+            data-strict="0"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2014 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://covear.top/"target="_blank" rel="external nofollow noopener noreferrer">David Deng</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中……'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="run-times ms-1">网站运行中……</span></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><div class="footer-line beian"><span class="icp footer-divider"><a href="http://beian.miit.gov.cn/" target="_blank">湘ICP备17019987号</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/green/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/twemoji/twemoji.min.js" defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light_high_contrast"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"lightgallery":true,"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":100,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"siteTime":"2014-01-01T00:00:00+08:00","twemoji":true};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
