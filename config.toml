@@ -8,6 +8,7 @@ defaultContentLanguage = "zh-cn"
 languageCode = "zh-CN"
 # 是否包括中日韩文字
 hasCJKLanguage = true
+summaryLength = 100
 
 # 更改使用 Hugo 构建网站时使用的默认主题
 theme = "FixIt"
