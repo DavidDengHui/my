@@ -1,5 +1,5 @@
 title = "啊晖de老窝"
-HUGO_VERSION = "v0.111.3"
+HUGO_VERSION = "v0.168.0"
 baseURL = "https://covear.gitee.io"
 # hugo --baseURL "https://covear.gitee.io"
 # 设置默认的语言 ["en", "zh-cn", "fr", "pl", ...]
@@ -12,6 +12,16 @@ summaryLength = 100
 
 # 更改使用 Hugo 构建网站时使用的默认主题
 theme = "FixIt"
+
+[taxonomies]
+  author = "authors"
+
+[params.author]
+  name = "David Deng"
+  email = "david.no.1@msn.cn"
+  link = "https://covear.top/"
+  avatar = "https://img.source.host.covear.top/avatar.jpg"
+
 
 [menu]
   [[menu.main]]
