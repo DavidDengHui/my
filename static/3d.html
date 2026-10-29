@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GLB 3D 模型预览器</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; font-family: "Segoe UI", "Microsoft YaHei", sans-serif; }
+  #container { position: absolute; inset: 0; }
+  #topbar { position: absolute; top: 0; left: 0; right: 0; height: 48px; background: rgba(20,22,28,.85); backdrop-filter: blur(8px); color: #eee; display: flex; align-items: center; padding: 0 14px; gap: 10px; z-index: 10; border-bottom: 1px solid rgba(255,255,255,.08); user-select: none; }
+  #topbar .title { font-size: 15px; font-weight: 600; letter-spacing: .5px; white-space: nowrap; }
+  #topbar .sep { width: 1px; height: 20px; background: rgba(255,255,255,.15); }
+  #topbar .hint { font-size: 12px; color: #9aa; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #openBtn { background: #3b82f6; color: #fff; border: 0; border-radius: 6px; padding: 6px 14px; font-size: 13px; cursor: pointer; }
+  #openBtn:hover { background: #2f6fe0; }
+  #panel { position: absolute; top: 58px; right: 12px; width: 220px; background: rgba(20,22,28,.82); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; color: #ddd; padding: 12px; z-index: 10; font-size: 13px; user-select: none; }
+  #panel .row { display: flex; align-items: center; justify-content: space-between; margin: 9px 0; gap: 8px; }
+  #panel label { color: #aab; white-space: nowrap; }
+  #panel input[type=range] { flex: 1; accent-color: #3b82f6; }
+  #panel input[type=checkbox] { accent-color: #3b82f6; width: 15px; height: 15px; }
+  #panel select { background: #23262e; color: #ddd; border: 1px solid #333a45; border-radius: 5px; padding: 4px 6px; }
+  #panel .btn { background: #2a2e37; color: #ddd; border: 1px solid #3a4150; border-radius: 6px; padding: 5px 10px; cursor: pointer; font-size: 12.5px; }
+  #panel .btn:hover { background: #343946; }
+  #panel .sec { font-size: 11px; color: #8a93a5; letter-spacing: 1px; margin: 12px 0 4px; text-transform: uppercase; }
+  #info { font-size: 12px; color: #99a; line-height: 1.7; margin-top: 6px; word-break: break-all; }
+  #dropHint { position: absolute; inset: 48px 0 0 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #556; pointer-events: none; z-index: 5; transition: opacity .2s; }
+  #dropHint .big { font-size: 22px; color: #667; margin-bottom: 10px; letter-spacing: 1px; }
+  #dropHint .small { font-size: 13px; color: #556; }
+  #dropHint.on { background: rgba(59,130,246,.12); outline: 2px dashed #3b82f6; outline-offset: -12px; }
+  #toast { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,.75); color: #fff; padding: 9px 18px; border-radius: 8px; font-size: 13px; opacity: 0; transition: opacity .25s; z-index: 20; pointer-events: none; }
+  #status { position: absolute; bottom: 10px; left: 12px; color: #667; font-size: 11.5px; z-index: 10; }
+</style>
+</head>
+<body>
+<div id="container"></div>
+
+<div id="topbar">
+  <span class="title">GLB 3D 模型预览</span>
+  <span class="sep"></span>
+  <button id="openBtn">打开模型…</button>
+  <span class="hint">或将 .glb / .gltf 文件直接拖入窗口</span>
+  <input type="file" id="fileInput" accept=".glb,.gltf" style="display:none">
+</div>
+
+<div id="panel">
+  <div class="row"><label>爆炸分解</label><span id="explodeVal" style="color:#3b82f6;min-width:34px;text-align:right">0%</span></div>
+  <input type="range" id="explode" min="0" max="100" value="0" style="width:100%;margin:0 0 4px">
+  <div class="row"><label>自动旋转</label><input type="checkbox" id="autoRotate"></div>
+  <div class="row"><label>地面网格</label><input type="checkbox" id="grid"></div>
+  <div class="row"><label>线框模式</label><input type="checkbox" id="wireframe"></div>
+  <div class="row"><label>背景</label>
+    <select id="bg">
+      <option value="#1a1d24">深色</option>
+      <option value="#e8eaef">浅色</option>
+      <option value="#101418">纯黑</option>
+      <option value="#f8fafc">纯白</option>
+    </select>
+  </div>
+  <div class="row" style="justify-content:flex-start;gap:8px">
+    <button class="btn" id="fitBtn">重置视角</button>
+    <button class="btn" id="frontBtn">正视</button>
+  </div>
+  <div class="sec">模型信息</div>
+  <div id="info">未加载模型</div>
+</div>
+
+<div id="dropHint">
+  <div class="big">把 3D 模型拖到这里</div>
+  <div class="small">支持 .glb / .gltf · 文件仅在本地处理，不会上传</div>
+</div>
+<div id="status">左键旋转 · 滚轮缩放 · 右键平移</div>
+<div id="toast"></div>
+
+<script src="lib/three.min.js"></script>
+<script src="lib/OrbitControls.js"></script>
+<script src="lib/GLTFLoader.js"></script>
+<script src="lib/RoomEnvironment.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var container = document.getElementById('container');
+  var scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x1a1d24);
+
+  var camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 10000);
+  var renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+  container.appendChild(renderer.domElement);
+
+  var controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.autoRotateSpeed = 1.2;
+
+  var pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new THREE.RoomEnvironment(), 0.04).texture;
+
+  var sun = new THREE.DirectionalLight(0xffffff, 1.4);
+  sun.position.set(6, 10, 8);
+  scene.add(sun);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+
+  var grid = new THREE.GridHelper(10, 20, 0x7a8290, 0x3a3f4a);
+  grid.visible = false;
+  scene.add(grid);
+
+  var model = null;
+  var modelGroup = null;
+  var parts = [];
+  var modelCenter = new THREE.Vector3();
+  var modelRadius = 1;
+
+  var explode = 0;
+  var wireOn = false;
+  var wireMats = [];
+  var pendingExplode = null;
+
+  var loader = new THREE.GLTFLoader();
+
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.opacity = 1;
+    clearTimeout(t._h);
+    t._h = setTimeout(function () { t.style.opacity = 0; }, 2600);
+  }
+  window.addEventListener('error', function (e) {
+    showToast('运行错误: ' + (e.message || '未知'));
+  });
+
+  function fitView() {
+    if (!model) return;
+    var box = new THREE.Box3().setFromObject(model);
+    if (box.isEmpty()) return;
+    var sp = box.getBoundingSphere(new THREE.Sphere());
+    modelCenter.copy(sp.center);
+    modelRadius = Math.max(sp.radius, 0.001);
+    controls.target.copy(modelCenter);
+    var d = modelRadius * 2.6;
+    camera.position.set(modelCenter.x + d * 0.65, modelCenter.y + d * 0.45, modelCenter.z + d);
+    camera.near = Math.max(modelRadius / 2000, 0.0001);
+    camera.far = modelRadius * 60;
+    camera.updateProjectionMatrix();
+    controls.update();
+    if (grid.visible) {
+      grid.position.set(modelCenter.x, modelCenter.y - modelRadius - 0.5, modelCenter.z);
+      grid.scale.setScalar(modelRadius * 2);
+    }
+  }
+
+  // 收集“零件”：顶层节点若只有一个子节点则继续下钻，直到出现多个子节点或叶子
+  function collectParts() {
+    var root = model;
+    var level = root;
+    while (level.children.length === 1 && level.children[0].children.length > 0) {
+      level = level.children[0];
+    }
+    var nodes = level.children.length > 0 ? level.children.slice() : [level];
+    var center = new THREE.Box3().setFromObject(model).getBoundingSphere(new THREE.Sphere()).center;
+    parts = [];
+    nodes.forEach(function (n) {
+      var box = new THREE.Box3().setFromObject(n);
+      if (box.isEmpty()) return;
+      var c = box.getBoundingSphere(new THREE.Sphere()).center;
+      var d = c.clone().sub(center);
+      var dist = d.length();
+      if (dist < 1e-6) { d.set(0, 0.001, 0); dist = 0.001; }
+      parts.push({ obj: n, base: n.position.clone(), dir: d.normalize(), dist: dist });
+    });
+  }
+
+  function applyExplode(level) {
+    explode = level;
+    var f = 0.95;
+    parts.forEach(function (p) {
+      p.obj.position.copy(p.base).addScaledVector(p.dir, p.dist * f * level);
+    });
+    scene.updateMatrixWorld(true);
+  }
+
+  function onModelLoaded(gltf, name) {
+    if (modelGroup) {
+      scene.remove(modelGroup);
+      modelGroup = null;
+    }
+    model = gltf.scene;
+    modelGroup = model;
+    scene.add(model);
+    wireMats = [];
+    wireOn = false;
+    document.getElementById('wireframe').checked = false;
+    model.traverse(function (o) {
+      if (o.isMesh) { o.material = o.material; wireMats.push({ mesh: o, mat: o.material }); }
+    });
+    collectParts();
+    applyExplode(0);
+    document.getElementById('explode').value = 0;
+    document.getElementById('explodeVal').textContent = '0%';
+    fitView();
+
+    var tri = 0;
+    model.traverse(function (o) {
+      if (o.isMesh && o.geometry.index) tri += o.geometry.index.count / 3;
+    });
+    var info = document.getElementById('info');
+    info.innerHTML =
+      '文件：' + (name || '已加载') + '<br>' +
+      '零件：' + parts.length + ' · 网格：' + wireMats.length + '<br>' +
+      '三角面：' + (tri > 1000 ? (tri / 1000).toFixed(1) + 'k' : Math.round(tri));
+    document.getElementById('dropHint').style.opacity = 0;
+    if (pendingExplode !== null) {
+      var v = Math.min(100, Math.max(0, pendingExplode * 100));
+      document.getElementById('explode').value = v;
+      document.getElementById('explodeVal').textContent = Math.round(v) + '%';
+      applyExplode(pendingExplode);
+      pendingExplode = null;
+    }
+    showToast('模型加载完成：' + (name || ''));
+  }
+
+  function loadByUrl(url) {
+    loader.load(url, function (gltf) { onModelLoaded(gltf, url.split('/').pop()); }, undefined, function (e) {
+      showToast('加载失败：' + (e && e.message ? e.message : e));
+    });
+  }
+
+  function loadByFile(file) {
+    if (!file) return;
+    var ext = (file.name.split('.').pop() || '').toLowerCase();
+    if (ext !== 'glb' && ext !== 'gltf') { showToast('仅支持 .glb / .gltf 文件'); return; }
+    file.arrayBuffer().then(function (buf) {
+      loader.parse(buf, '', function (gltf) { onModelLoaded(gltf, file.name); }, function (e) {
+        showToast('解析失败：' + (e && e.message ? e.message : e));
+      });
+    }).catch(function () { showToast('读取文件失败'); });
+  }
+
+  // ---- 控件绑定 ----
+  document.getElementById('openBtn').addEventListener('click', function () {
+    document.getElementById('fileInput').click();
+  });
+  document.getElementById('fileInput').addEventListener('change', function (e) {
+    if (e.target.files && e.target.files[0]) loadByFile(e.target.files[0]);
+    e.target.value = '';
+  });
+
+  document.getElementById('explode').addEventListener('input', function (e) {
+    var v = +e.target.value;
+    document.getElementById('explodeVal').textContent = Math.round(v) + '%';
+    applyExplode(v / 100);
+  });
+
+  document.getElementById('autoRotate').addEventListener('change', function (e) {
+    controls.autoRotate = e.target.checked;
+  });
+
+  document.getElementById('grid').addEventListener('change', function (e) {
+    grid.visible = e.target.checked;
+    if (e.target.checked && model) fitView();
+  });
+
+  document.getElementById('wireframe').addEventListener('change', function (e) {
+    wireOn = e.target.checked;
+    if (!model) return;
+    if (wireOn) {
+      wireMats.forEach(function (w) {
+        w.mesh.material = w.mat.clone();
+        w.mesh.material.wireframe = true;
+      });
+    } else {
+      wireMats.forEach(function (w) { w.mesh.material = w.mat; });
+    }
+  });
+
+  document.getElementById('bg').addEventListener('change', function (e) {
+    scene.background = new THREE.Color(e.target.value);
+  });
+
+  document.getElementById('fitBtn').addEventListener('click', fitView);
+  document.getElementById('frontBtn').addEventListener('click', function () {
+    if (!model) return;
+    controls.target.copy(modelCenter);
+    camera.position.set(modelCenter.x, modelCenter.y, modelCenter.z + modelRadius * 2.6);
+    controls.update();
+  });
+
+  // 拖放
+  var hint = document.getElementById('dropHint');
+  window.addEventListener('dragover', function (e) {
+    e.preventDefault();
+    hint.classList.add('on');
+  });
+  window.addEventListener('dragleave', function () { hint.classList.remove('on'); });
+  window.addEventListener('drop', function (e) {
+    e.preventDefault();
+    hint.classList.remove('on');
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) loadByFile(e.dataTransfer.files[0]);
+  });
+
+  window.addEventListener('resize', function () {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // 参数支持：?url=模型地址&explode=0.5（用于快捷方式与测试）
+  (function () {
+    var q = new URLSearchParams(location.search);
+    var u = q.get('url');
+    var ex = parseFloat(q.get('explode'));
+    if (!isNaN(ex)) pendingExplode = ex;
+    if (u) loadByUrl(u);
+  })();
+})();
+</script>
+</body>
+</html>

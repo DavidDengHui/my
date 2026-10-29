@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>微信授权 Code → Token</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px 16px 60px;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    color: #1f2430;
+    background:
+      radial-gradient(900px 500px at 8% -8%, #dbe7ff 0%, rgba(219,231,255,0) 60%),
+      radial-gradient(900px 500px at 105% 0%, #ece3ff 0%, rgba(236,227,255,0) 55%),
+      #f6f8fc;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .wrap { width: 100%; max-width: 760px; }
+
+  .head { margin-bottom: 18px; padding: 0 4px; }
+  .head h1 { font-size: 22px; margin: 0 0 6px; letter-spacing: .2px; }
+  .sub { margin: 0; font-size: 13.5px; color: #7a8296; line-height: 1.6; }
+  .sub code, .hint code, .help code, .step-sub code {
+    background: #eef2fa; padding: 1px 6px; border-radius: 6px;
+    font-size: 12.5px; font-family: ui-monospace, Menlo, Consolas, monospace;
+    word-break: break-all;
+  }
+
+  .card {
+    background: #fff; border: 1px solid #e8edf6; border-radius: 18px;
+    padding: 22px; box-shadow: 0 12px 34px rgba(31, 36, 48, .07);
+  }
+
+  .step + .step { margin-top: 22px; padding-top: 22px; border-top: 1px dashed #e6ebf5; }
+
+  .step-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .step-no {
+    flex: none; width: 24px; height: 24px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12.5px; font-weight: 700; color: #fff;
+    background: linear-gradient(135deg, #5b8cff, #4f6cf7);
+  }
+  .step.no-2 .step-no { background: linear-gradient(135deg, #9b8cff, #7a63f7); }
+  .step-title { font-size: 14.5px; font-weight: 700; color: #2b3242; }
+  .step-sub { font-size: 12.5px; color: #8b93a6; margin-left: 2px; }
+
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .label { display: block; font-size: 13px; font-weight: 600; color: #454c5e; margin-bottom: 8px; }
+
+  .row { display: flex; gap: 10px; }
+  .input {
+    flex: 1; min-width: 0; height: 48px; padding: 0 14px;
+    font-size: 14px; font-family: inherit; color: #1f2430;
+    border: 1px solid #dfe6f2; border-radius: 12px; background: #fbfcfe;
+    outline: none; transition: .18s;
+  }
+  .input::placeholder { color: #a8b0c2; }
+  .input:focus { border-color: #7aa2ff; background: #fff; box-shadow: 0 0 0 4px rgba(91,140,255,.14); }
+
+  .btn {
+    height: 48px; padding: 0 20px; border: 0; border-radius: 12px; cursor: pointer;
+    color: #fff; font-size: 14.5px; font-weight: 600; font-family: inherit; white-space: nowrap;
+    background: linear-gradient(135deg, #5b8cff, #4f6cf7);
+    box-shadow: 0 6px 16px rgba(79,108,247,.28);
+    transition: .18s;
+  }
+  .btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 9px 20px rgba(79,108,247,.34); }
+  .btn:active:not(:disabled) { transform: translateY(0); box-shadow: 0 4px 12px rgba(79,108,247,.28); }
+  .btn:disabled { opacity: .62; cursor: not-allowed; box-shadow: none; transform: none; }
+
+  .btn.ghost {
+    background: #fff; color: #3a63d8; border: 1px solid #d7e0f2; box-shadow: none;
+  }
+  .btn.ghost:hover:not(:disabled) { background: #f2f6ff; border-color: #b9cdfb; box-shadow: none; }
+  .btn.ghost:active:not(:disabled) { box-shadow: none; }
+
+  .hint { margin: 10px 0 0; font-size: 12.5px; color: #9aa2b4; line-height: 1.65; }
+
+  .status {
+    margin-top: 18px; padding: 12px 14px; border-radius: 12px;
+    font-size: 13.5px; line-height: 1.7; white-space: pre-wrap; word-break: break-word;
+    border: 1px solid transparent;
+  }
+  .status.info { background: #f1f6ff; border-color: #d8e6ff; color: #2b53a8; }
+  .status.ok   { background: #eefbf3; border-color: #c9efda; color: #12734a; }
+  .status.err  { background: #fff1f1; border-color: #ffd6d6; color: #b32020; }
+  .status.warn { background: #fff8ec; border-color: #ffe1b8; color: #9a5b06; }
+
+  .result { margin-top: 20px; }
+  .user-card {
+    display: flex; gap: 14px; align-items: center;
+    background: #f8fafd; border: 1px solid #e8edf6; border-radius: 14px; padding: 14px;
+  }
+  .avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; background: #e8edf6; flex: none; }
+  .user-meta { min-width: 0; }
+  .user-name { font-size: 15.5px; font-weight: 600; margin-bottom: 4px; }
+  .user-line { font-size: 13px; color: #6b7385; line-height: 1.7; word-break: break-all; }
+
+  .token-head { display: flex; align-items: center; justify-content: space-between; margin: 18px 0 8px; }
+  .token-label { font-size: 13px; font-weight: 600; color: #454c5e; letter-spacing: .4px; }
+  .copy-btn {
+    height: 30px; padding: 0 14px; border-radius: 9px; cursor: pointer;
+    border: 1px solid #d7e0f2; background: #fff; color: #3a63d8;
+    font-size: 12.5px; font-weight: 600; font-family: inherit; transition: .15s;
+  }
+  .copy-btn:hover { background: #f2f6ff; border-color: #b9cdfb; }
+  .copy-btn.copied { background: #e8f8ef; border-color: #bfe8d2; color: #12734a; }
+
+  .token-text {
+    margin: 0; padding: 13px 14px; border-radius: 12px;
+    background: #f8fafd; border: 1px solid #e8edf6; color: #1f2430;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; line-height: 1.65;
+    white-space: pre-wrap; word-break: break-all;
+  }
+  .token-meta { margin-top: 8px; font-size: 12.5px; color: #7a8296; }
+
+  .help { margin-top: 18px; padding: 0 4px; font-size: 13px; color: #7a8296; }
+  .help summary { cursor: pointer; color: #4f6cf7; font-weight: 600; outline: none; }
+  .help p { line-height: 1.8; margin: 8px 0; }
+  .help pre {
+    background: #f8fafd; border: 1px solid #e8edf6; border-radius: 10px;
+    padding: 10px 12px; overflow: auto; font-size: 12px; color: #3c4354;
+    white-space: pre-wrap; word-break: break-all; margin: 6px 0;
+  }
+
+  .hidden { display: none !important; }
+
+  @media (max-width: 560px) {
+    .row { flex-direction: column; }
+    .row .btn { width: 100%; }
+    .btn-row .btn { flex: 1 1 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="head">
+    <h1>微信授权 Code → Token</h1>
+    <p class="sub">先走 OAuth2 授权拿到 <code>code</code>，再调用 <code>/wx/check</code> 换取用户信息与 token</p>
+  </header>
+
+  <main class="card">
+
+    <!-- 第一步：授权拿 code -->
+    <section class="step">
+      <div class="step-head">
+        <span class="step-no">1</span>
+        <span class="step-title">微信授权获取 Code</span>
+      </div>
+
+      <div class="btn-row">
+        <button id="autoBtn" class="btn" type="button">自动获取 Code 并换 Token</button>
+        <button id="openAuthBtn" class="btn ghost" type="button">打开授权页</button>
+        <button id="pasteBtn" class="btn ghost" type="button">从剪贴板读取</button>
+      </div>
+
+      <p class="hint">
+        授权地址：<code>open.weixin.qq.com/connect/oauth2/authorize?appid=ww2dd5ef4513728159…</code><br>
+        授权成功后微信会跳转到 <code>https://gt-wx.gtrmt.cn/?code=XXXX#/</code>，页面会尝试自动捕获这个 code。
+      </p>
+    </section>
+
+    <!-- 第二步：手动输入 -->
+    <section class="step no-2">
+      <div class="step-head">
+        <span class="step-no">2</span>
+        <span class="step-title">或手动输入 Code / 回跳链接</span>
+      </div>
+
+      <div class="row">
+        <input id="codeInput" class="input" type="text" spellcheck="false"
+               autocomplete="off" autocapitalize="off"
+               placeholder="粘贴 code，或整条回跳链接 https://gt-wx.gtrmt.cn/?code=…#/">
+        <button id="fetchBtn" class="btn" type="button">获取 Token</button>
+      </div>
+      <p class="hint">粘贴完整链接时会自动提取 <code>code=</code> 之后的部分</p>
+    </section>
+
+    <div id="status" class="status hidden"></div>
+
+    <section id="result" class="result hidden">
+      <div id="userCard" class="user-card hidden">
+        <img id="avatar" class="avatar" alt="">
+        <div class="user-meta">
+          <div class="user-name" id="uName"></div>
+          <div class="user-line" id="uMobile"></div>
+          <div class="user-line" id="uDept"></div>
+        </div>
+      </div>
+
+      <div class="token-head">
+        <span class="token-label">TOKEN</span>
+        <button id="copyBtn" class="copy-btn" type="button">复制</button>
+      </div>
+      <pre id="tokenText" class="token-text"></pre>
+      <div id="tokenMeta" class="token-meta"></div>
+    </section>
+
+  </main>
+
+  <details class="help">
+    <summary>为什么“自动获取”有时候拿不到 code？</summary>
+    <p>
+      <b>浏览器读不到跨域重定向后的地址。</b>微信授权接口会 302 跳转到
+      <code>gt-wx.gtrmt.cn</code>，而 <code>fetch</code> 在浏览器里：
+    </p>
+    <p>
+      1. 如果目标域没返回 CORS 头，请求直接失败；<br>
+      2. 用 <code>redirect:'manual'</code> 只能拿到不透明的 <code>opaqueredirect</code>，读不到 <code>Location</code> 响应头；<br>
+      3. 用 <code>iframe</code> 加载后，跨域也读不到 <code>contentWindow.location</code>。<br>
+      cmd 里的 curl 没有这些限制，所以能直接看到 302 的 <code>Location</code>。
+    </p>
+    <p>
+      <b>所以本页的做法是：</b>先尽力尝试（fetch 跟随 + iframe 探测），
+      失败后自动打开授权页；你在授权页完成跳转后，
+      复制地址栏链接，回到本页点「从剪贴板读取」，即可自动提取 code 并换 token。
+    </p>
+    <p>另外：微信 OAuth2 授权页在电脑浏览器中通常提示“请在微信客户端打开链接”，建议在微信内置浏览器里完成授权，或直接手动粘贴回跳链接。</p>
+    <p>用 curl 自测（和页面发出的换 token 请求体完全一致）：</p>
+    <pre id="curlHint">curl -k -X POST "https://ali.gtrmt.cn:8895/wx/check" -H "Content-Type: application/json" -d "{\"url\":\"https://gt-wx.gtrmt.cn/?code=&lt;CODE&gt;#/\",\"usercode\":\"&lt;CODE&gt;\",\"agentid\":\"1000031\"}"</pre>
+  </details>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ============ 常量 ============ */
+  var AUTH_URL =
+    'https://open.weixin.qq.com/connect/oauth2/authorize' +
+    '?appid=ww2dd5ef4513728159' +
+    '&redirect_uri=' + encodeURIComponent('https://gt-wx.gtrmt.cn/') +
+    '&response_type=code&scope=snsapi_base&wxurl=zf#wechat_redirect';
+
+  var ENDPOINT = 'https://ali.gtrmt.cn:8895/wx/check';
+  var AGENT_ID = '1000031';
+  var WX_BASE  = 'https://gt-wx.gtrmt.cn/?code=';
+  var TIMEOUT  = 20000;
+
+  /* ============ 元素 ============ */
+  var $ = function (id) { return document.getElementById(id); };
+  var els = {
+    input:      $('codeInput'),
+    fetchBtn:   $('fetchBtn'),
+    autoBtn:    $('autoBtn'),
+    openAuthBtn:$('openAuthBtn'),
+    pasteBtn:   $('pasteBtn'),
+    status:     $('status'),
+    result:     $('result'),
+    userCard:   $('userCard'),
+    avatar:     $('avatar'),
+    uName:      $('uName'),
+    uMobile:    $('uMobile'),
+    uDept:      $('uDept'),
+    tokenText:  $('tokenText'),
+    tokenMeta:  $('tokenMeta'),
+    copyBtn:    $('copyBtn'),
+    curlHint:   $('curlHint')
+  };
+
+  var currentToken = '';
+  var loading = false;
+  var focusWatch = { armed: false, tries: 0 };
+
+  /* ============ 基础工具 ============ */
+
+  function safeDecode(v) {
+    try { return decodeURIComponent(v); } catch (e) { return v; }
+  }
+
+  // 从任意文本中提取 code：支持纯 code、完整链接、带引号的字符串
+  function extractCode(raw) {
+    var s = String(raw == null ? '' : raw).trim();
+    if (!s) return '';
+
+    // 优先匹配 URL 里的 code= 参数
+    var m = s.match(/[?&]code=([^&#\s"'<>]+)/i);
+    if (m) return safeDecode(m[1]);
+
+    // 兜底：单行、长度合理的纯 code
+    var single = s.replace(/^[<"'`\s]+|[>"'`\s]+$/g, '');
+    if (single && single.length <= 200 && !/[\s]/.test(single)) return single;
+
+    return '';
+  }
+
+  // 从 URL 字符串中提取 code
+  function extractCodeFromUrl(url) {
+    if (!url) return '';
+    var m = String(url).match(/[?&]code=([^&#\s"'<>]+)/i);
+    return m ? safeDecode(m[1]) : '';
+  }
+
+  // 深度查找
+  function deepFind(obj, test, depth) {
+    depth = depth || 0;
+    if (!obj || typeof obj !== 'object' || depth > 8) return null;
+    if (test(obj)) return obj;
+    var keys = Object.keys(obj);
+    for (var i = 0; i < keys.length; i++) {
+      var r = deepFind(obj[keys[i]], test, depth + 1);
+      if (r) return r;
+    }
+    return null;
+  }
+
+  function findToken(data, text) {
+    if (data && typeof data === 'object') {
+      if (typeof data.token === 'string' && data.token) return data.token;
+      var hit = deepFind(data, function (o) {
+        return typeof o.token === 'string' && o.token.split('.').length === 3;
+      });
+      if (hit) return hit.token;
+    }
+    var m = String(text || '').match(/"token"\s*:\s*"([^"]+)"/);
+    return m ? m[1] : '';
+  }
+
+  function findUser(data) {
+    return deepFind(data, function (o) {
+      return typeof o.name === 'string' &&
+             (typeof o.mobile === 'string' || typeof o.avatar === 'string');
+    });
+  }
+
+  function parseJwt(token) {
+    try {
+      var parts = String(token).split('.');
+      if (parts.length !== 3) return null;
+      var b64 = parts[1].replace(/-/g, '+').replace(/_/g, '/');
+      var pad = b64 + '='.repeat((4 - b64.length % 4) % 4);
+      var bin = atob(pad);
+      var bytes = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return JSON.parse(new TextDecoder('utf-8').decode(bytes));
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function curlOf(code) {
+    var body = JSON.stringify({
+      url: WX_BASE + code + '#/',
+      usercode: code,
+      agentid: AGENT_ID
+    });
+    return 'curl -k -X POST "' + ENDPOINT + '" -H "Content-Type: application/json" -d ' + JSON.stringify(body);
+  }
+
+  /* ============ UI 状态 ============ */
+
+  function setStatus(msg, type) {
+    els.status.className = 'status ' + (type || 'info');
+    els.status.textContent = msg;
+  }
+
+  function setLoading(on) {
+    loading = on;
+    [els.fetchBtn, els.autoBtn, els.openAuthBtn, els.pasteBtn].forEach(function (b) {
+      if (b) b.disabled = on;
+    });
+    els.fetchBtn.textContent = on ? '请求中…' : '获取 Token';
+    els.autoBtn.textContent  = on ? '处理中…' : '自动获取 Code 并换 Token';
+  }
+
+  function hideResult() {
+    els.result.classList.add('hidden');
+    els.userCard.classList.add('hidden');
+    els.tokenText.textContent = '';
+    els.tokenMeta.textContent = '';
+    currentToken = '';
+  }
+
+  /* ============ 核心：换 token ============ */
+
+  function requestCheck(code) {
+    var payload = {
+      url: WX_BASE + code + '#/',
+      usercode: code,
+      agentid: AGENT_ID
+    };
+
+    var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, TIMEOUT) : null;
+
+    return fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      signal: ctrl ? ctrl.signal : undefined,
+      credentials: 'omit'
+    }).then(function (resp) {
+      if (timer) clearTimeout(timer);
+      return resp.text().then(function (text) {
+        if (!resp.ok) {
+          throw new Error('接口返回 HTTP ' + resp.status + ' ' + resp.statusText +
+                          '\n' + String(text).slice(0, 300));
+        }
+        var data;
+        try {
+          data = JSON.parse(text);
+        } catch (e) {
+          throw new Error('接口返回的不是合法 JSON：\n' + String(text).slice(0, 300));
+        }
+        return { data: data, text: text };
+      });
+    }, function (err) {
+      if (timer) clearTimeout(timer);
+      throw err;
+    });
+  }
+
+  function render(user, token) {
+    currentToken = token;
+    els.result.classList.remove('hidden');
+
+    if (user) {
+      els.userCard.classList.remove('hidden');
+      if (user.avatar) {
+        els.avatar.style.display = '';
+        els.avatar.onerror = function () { els.avatar.style.display = 'none'; };
+        els.avatar.src = user.avatar;
+      } else {
+        els.avatar.style.display = 'none';
+      }
+      els.uName.textContent = user.name || '未知用户';
+      els.uMobile.textContent = '手机：' + (user.mobile || '—');
+
+      var dept = Array.isArray(user.department)
+        ? user.department.join(' / ')
+        : (user.department == null ? '' : String(user.department));
+      els.uDept.textContent = '部门：' + (dept || '—');
+    } else {
+      els.userCard.classList.add('hidden');
+    }
+
+    els.tokenText.textContent = token;
+
+    var p = parseJwt(token);
+    if (p && p.exp) {
+      var d = new Date(p.exp * 1000);
+      var pad = function (n) { return String(n).padStart(2, '0'); };
+      var str = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) +
+                ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+      var expired = d.getTime() < Date.now();
+      els.tokenMeta.textContent = '有效期至 ' + str + (expired ? '（已过期）' : '');
+      els.tokenMeta.style.color = expired ? '#c0392b' : '';
+    } else {
+      els.tokenMeta.textContent = '长度 ' + token.length + ' 字符';
+      els.tokenMeta.style.color = '';
+    }
+
+    els.copyBtn.textContent = '复制';
+    els.copyBtn.classList.remove('copied');
+  }
+
+  // 用 code 执行一次完整换取流程
+  function runCheck(code) {
+    if (!code) return Promise.resolve();
+
+    els.input.value = code;
+    els.curlHint.textContent = curlOf(code);
+    setLoading(true);
+    hideResult();
+    setStatus('正在请求 /wx/check 换取 Token…', 'info');
+
+    return requestCheck(code).then(function (res) {
+      var token = findToken(res.data, res.text);
+      if (!token) {
+        throw new Error('接口已返回，但未解析到 token。原始返回：\n' +
+                        String(res.text).slice(0, 400));
+      }
+      var user = findUser(res.data);
+      render(user, token);
+      setStatus('获取成功，Token 已就绪，可点击右侧「复制」。', 'ok');
+    }).catch(function (err) {
+      console.error(err);
+
+      if (err && err.name === 'AbortError') {
+        setStatus('请求超时（20 秒），请检查网络或稍后重试。', 'err');
+        return;
+      }
+      if (err instanceof TypeError) {
+        setStatus(
+          '请求失败：无法访问 /wx/check。常见原因：\n' +
+          '• 浏览器跨域（CORS）限制 —— 接口未返回 Access-Control-Allow-Origin；\n' +
+          '• 服务器证书不被浏览器信任（curl 的 -k 可跳过，浏览器不能）；\n' +
+          '• 网络不通或地址已变更。\n\n' +
+          '可复制下面的命令在本机 cmd 中验证接口是否正常：\n' +
+          curlOf(code),
+          'err'
+        );
+        return;
+      }
+      setStatus((err && err.message ? err.message : String(err)) +
+                '\n\n可用 curl 验证：\n' + curlOf(code), 'err');
+    }).then(function () {
+      setLoading(false);
+    });
+  }
+
+  /* ============ 尝试自动捕获 code ============ */
+
+  // 方式 A：fetch 跟随重定向，看最终 URL / 响应体里有没有 code
+  function fetchFollowCode(url) {
+    if (typeof fetch !== 'function') return Promise.resolve('');
+
+    var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 12000) : null;
+
+    return fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      redirect: 'follow',
+      credentials: 'omit',
+      cache: 'no-store',
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (resp) {
+      if (timer) clearTimeout(timer);
+      // 最终地址
+      var c = extractCodeFromUrl(resp.url);
+      if (c) return c;
+      // 响应体里找
+      return resp.text().then(function (txt) {
+        var m = String(txt).match(/[?&]code=([^&#\s"'<>]+)/i);
+        return m ? safeDecode(m[1]) : '';
+      });
+    }).catch(function (e) {
+      if (timer) clearTimeout(timer);
+      return '';
+    });
+  }
+
+  // 方式 B：隐藏 iframe 加载，尝试读 location（跨域会失败）
+  function iframeProbeCode(url) {
+    return new Promise(function (resolve) {
+      var ifr = document.createElement('iframe');
+      ifr.style.cssText = 'position:fixed;width:1px;height:1px;opacity:0;left:-9999px;top:-9999px;border:0;';
+      var done = false;
+
+      function finish(v) {
+        if (done) return;
+        done = true;
+        try { ifr.parentNode && ifr.parentNode.removeChild(ifr); } catch (e) {}
+        resolve(v || '');
+      }
+
+      ifr.onload = function () {
+        try {
+          var href = ifr.contentWindow.location.href;
+          finish(extractCodeFromUrl(href));
+        } catch (e) {
+          finish(''); // 跨域，读不到
+        }
+      };
+      ifr.onerror = function () { finish(''); };
+      ifr.src = url;
+      document.body.appendChild(ifr);
+
+      setTimeout(function () { finish(''); }, 12000);
+    });
+  }
+
+  function tryCaptureCode() {
+    return fetchFollowCode(AUTH_URL).then(function (code) {
+      if (code) return code;
+      return iframeProbeCode(AUTH_URL);
+    });
+  }
+
+  /* ============ 剪贴板 ============ */
+
+  function readClipboardCode() {
+    if (!navigator.clipboard || !navigator.clipboard.readText) {
+      return Promise.resolve('');
+    }
+    return navigator.clipboard.readText().then(function (txt) {
+      if (!txt) return '';
+      return extractCodeFromUrl(txt); // 只接受链接里的 code，避免误读
+    }).catch(function () {
+      return '';
+    });
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch(function () {
+        return legacyCopy(text);
+      });
+    }
+    return legacyCopy(text);
+  }
+
+  function legacyCopy(text) {
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      ok ? resolve() : reject(new Error('copy failed'));
+    });
+  }
+
+  /* ============ 交互流程 ============ */
+
+  // 打开授权页
+  function openAuthWindow() {
+    var w = window.open(AUTH_URL, '_blank', 'noopener,noreferrer');
+    armFocusWatch();
+    return w;
+  }
+
+  // 授权页回到前台时，尝试静默读一次剪贴板
+  function armFocusWatch() {
+    if (focusWatch.armed) return;
+    focusWatch.armed = true;
+    window.addEventListener('focus', onWindowFocus);
+  }
+
+  function disarmFocusWatch() {
+    focusWatch.armed = false;
+    window.removeEventListener('focus', onWindowFocus);
+  }
+
+  function onWindowFocus() {
+    if (loading) return;
+    if (focusWatch.tries >= 4) { disarmFocusWatch(); return; }
+    focusWatch.tries++;
+
+    readClipboardCode().then(function (code) {
+      if (!code || loading) return;
+      disarmFocusWatch();
+      setStatus('已从剪贴板捕获 Code：' + code + '\n正在换取 Token…', 'info');
+      runCheck(code);
+    });
+  }
+
+  // 自动流程
+  function autoFlow() {
+    if (loading) return;
+    hideResult();
+    setLoading(true);
+    setStatus('正在尝试自动捕获授权后的 Code（fetch 跟随重定向 / iframe 探测）…', 'info');
+
+    tryCaptureCode().then(function (code) {
+      if (code) {
+        setStatus('已捕获 Code：' + code + '\n正在换取 Token…', 'info');
+        return runCheck(code);
+      }
+
+      // 捕获失败 → 引导手动流程
+      setLoading(false);
+      setStatus(
+        '浏览器无法自动读取授权后的跳转地址（跨域重定向限制，curl 无此限制）。\n\n' +
+        '已为你打开微信授权页面，请完成以下操作：\n' +
+        '1. 在打开的授权页中完成授权，页面会跳转到 https://gt-wx.gtrmt.cn/?code=…#/ ；\n' +
+        '2. 复制地址栏中的整条链接；\n' +
+        '3. 回到本页，点击「从剪贴板读取」（或直接把链接粘贴到第 2 步的输入框）。',
+        'warn'
+      );
+      openAuthWindow();
+    }).catch(function (err) {
+      setLoading(false);
+      setStatus(String((err && err.message) || err), 'err');
+    });
+  }
+
+  // 手动输入流程
+  function manualFlow() {
+    if (loading) return;
+    var code = extractCode(els.input.value);
+    if (!code) {
+      setStatus('请先输入 code 或粘贴包含 code 的回跳链接', 'err');
+      els.input.focus();
+      return;
+    }
+    runCheck(code);
+  }
+
+  // 从剪贴板读取并换 token
+  function pasteFlow() {
+    if (loading) return;
+
+    if (!navigator.clipboard || !navigator.clipboard.readText) {
+      setStatus('当前浏览器/环境不支持自动读取剪贴板，请手动粘贴到输入框（Ctrl+V）。', 'warn');
+      els.input.focus();
+      return;
+    }
+
+    setStatus('正在读取剪贴板…', 'info');
+    navigator.clipboard.readText().then(function (txt) {
+      var code = extractCodeFromUrl(txt) || extractCode(txt);
+      if (!code) {
+        setStatus('剪贴板里没有找到 code。请复制授权后跳转的完整链接再试。', 'warn');
+        return;
+      }
+      disarmFocusWatch();
+      setStatus('已读取 Code：' + code + '\n正在换取 Token…', 'info');
+      runCheck(code);
+    }).catch(function (err) {
+      setStatus('读取剪贴板失败（可能未授予权限）。\n请手动把回跳链接粘贴到输入框：Ctrl+V。\n' +
+                ((err && err.message) || ''), 'warn');
+      els.input.focus();
+    });
+  }
+
+  // 复制 token
+  function onCopy() {
+    if (!currentToken) return;
+    copyText(currentToken).then(function () {
+      els.copyBtn.textContent = '已复制 ✓';
+      els.copyBtn.classList.add('copied');
+      setTimeout(function () {
+        els.copyBtn.textContent = '复制';
+        els.copyBtn.classList.remove('copied');
+      }, 1600);
+    }).catch(function () {
+      setStatus('复制失败，请手动选中 token 文本复制', 'err');
+    });
+  }
+
+  /* ============ 绑定事件 ============ */
+
+  els.autoBtn.addEventListener('click', autoFlow);
+  els.openAuthBtn.addEventListener('click', function () {
+    openAuthWindow();
+    setStatus(
+      '已打开微信授权页。\n授权完成后页面会跳转到 https://gt-wx.gtrmt.cn/?code=…#/ ，\n' +
+      '复制地址栏链接后回到本页，点击「从剪贴板读取」即可自动换取 Token。',
+      'info'
+    );
+  });
+  els.pasteBtn.addEventListener('click', pasteFlow);
+  els.fetchBtn.addEventListener('click', manualFlow);
+  els.copyBtn.addEventListener('click', onCopy);
+
+  els.input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      manualFlow();
+    }
+  });
+
+  // 粘贴时立即归一化为 code
+  els.input.addEventListener('paste', function () {
+    setTimeout(function () {
+      var c = extractCode(els.input.value);
+      if (c && c !== els.input.value.trim()) els.input.value = c;
+    }, 0);
+  });
+
+  // 兜底：地址栏里已经带了 ?code= 时（页面被授权回跳带参打开）
+  (function bootstrapFromLocation() {
+    var c = extractCodeFromUrl(window.location.href);
+    if (c) {
+      els.input.value = c;
+      setStatus('检测到当前页面 URL 中带有 code，正在自动换取 Token…', 'info');
+      runCheck(c);
+      return;
+    }
+    els.input.focus();
+  })();
+
+})();
+</script>
+</body>
+</html>
